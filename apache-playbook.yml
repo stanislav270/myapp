@@ -1,4 +1,4 @@
-- hosts: ubuntu
+- hosts: all
   become: yes
   tasks:
 
@@ -39,6 +39,12 @@
 
     - name: enabled mpm_event
       apache2_module: name=mpm_event state=present
+
+    - name: Unarchive a file that needs to be downloaded 
+      unarchive:
+        src: https://www.free-css.com/assets/files/free-css-templates/download/page288/foste.zip
+        dest: /var/www/
+        remote_src: yes
 
 
       notify:
